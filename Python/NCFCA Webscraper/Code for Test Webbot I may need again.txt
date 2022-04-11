@@ -1,0 +1,34 @@
+while True:
+    xpath_number_of_current_posting += 1
+
+    # Tries to locate the next item. If their is an error than that means the item doesn't exist and they have reached the end of the line.
+    try:
+        current_posting_being_checked = driver.find_elements(
+            By.CLASS_NAME, 'schedule-list-item active ng-star-inserted')
+        print(current_posting_being_checked)
+    # If the end of the line has been reached and the script cannot locate the next item than it breaks the while loop
+    except:
+        print("Script probably checked all of the listings.")
+        break
+
+        # Tries to set color_of_current_posting_being_checked to the item's css value. If the item is a date (and doesn't have color value assigned) than it gives the variable a value.
+    try:
+        color_of_current_posting_being_checked = current_posting_being_checked.value_of_css_property(
+            "color")
+        print(color_of_current_posting_being_checked)
+    except:
+        color_of_current_posting_being_checked = "rgba(0, 0, 0, 0)"
+
+    # Gets the text of the current posting being checked.
+    try:
+        text_of_current_posting_being_checked = current_posting_being_checked.text
+    except:
+        text_of_current_posting_being_checked = "Could not find the text."
+
+    # Checks if the item is red (and therefore has been posted).
+    if color_of_current_posting_being_checked == 'rgba(0, 0, 0, 1)':
+        is_posted = True
+        print(text_of_current_posting_being_checked + " has been posted.")
+    else:
+        is_posted = False
+        print(text_of_current_posting_being_checked + " hasn't been posted.")
