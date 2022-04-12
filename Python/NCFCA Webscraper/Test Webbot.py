@@ -43,7 +43,7 @@ enter_tournament.click()
 xpath_number_of_current_posting = 1
 color_of_current_posting_being_checked = "rgba(0, 0, 0, 0)"
 
-
+# TODO The rest of the code works correctly up until this point. The bot can log into NCFCA and enter the tournament but the code below doesn't work and throws errors. Need to find out how to get a list of all of the elements of the class below. Then I can check that against a previous list of what was activated before. If there is a difference between the lists then the script should send me a notification (run an Applescript perhaps) that there are new postings. If I wanted to get really fancy I could even open up the new listing and check through the text to see if my name is on the list.
 current_posting_being_checked = driver.find_elements(
     By.CLASS_NAME, '"schedule-list-item active ng-star-inserted"')
 print(current_posting_being_checked)

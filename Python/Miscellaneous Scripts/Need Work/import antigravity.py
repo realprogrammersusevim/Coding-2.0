@@ -1,3 +1,5 @@
+# TODO yfinance often won't correctly download the stock data. Also if there is a Python module that could automatically get the location of the user that would be useful.
+
 from antigravity import geohash
 import yfinance as yf
 import datetime
