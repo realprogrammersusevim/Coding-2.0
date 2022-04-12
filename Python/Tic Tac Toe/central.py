@@ -1,12 +1,12 @@
 one_one = "x"
-one_two = "none"
-one_three = "none"
-two_one = "none"
-two_two = "none"
-two_three = "none"
-three_one = "none"
-three_two = "none"
-three_three = "none"
+one_two = "  "
+one_three = "  "
+two_one = "  "
+two_two = "  "
+two_three = "  "
+three_one = "  "
+three_two = "  "
+three_three = "  "
 
 
 def ask_for_move():
@@ -52,10 +52,9 @@ def tie():
 
 
 # This function will be called at the end of every move to display the current status of the board.
-# TODO Add a board output for all of the possibilities of what the board could look like.
 def show_board():
-    if one_one == 'x' and two_one == 'x' and three_one == 'x':
-        print('''
-              x | x | x
-              --+---+--
-              ''')
+    print(one_one + ' | ' + two_one + ' | ' + three_one)
+    print('--+--+--')
+    print(one_two + ' | ' + two_two + ' | ' + two_three)
+    print('--+--+--')
+    print(one_three + ' | ' + two_three + ' | ' + three_three)
