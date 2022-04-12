@@ -39,6 +39,15 @@ def ask_for_move():
         three_three = 'o'
 
 
+def computer_wins():
+    print('The computer wins. Humanity is doomed.')
+    # Eventually I'll start storing the win-tie record.
+
+
+def tie():
+    print('You tied up the game. Good job not-loser.')
+
+
 def show_board():
     if one_one == 'x' and two_one == 'x' and three_one == 'x':
         print('''
