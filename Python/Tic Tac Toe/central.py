@@ -20,7 +20,23 @@ def ask_for_move():
 
     player_move = (player_move_x, player_move_y)
     if player_move == '1, 1':
-        oneone = 'o'
+        one_one = 'o'
+    elif player_move == ' 2, 1':
+        two_one = 'o'
+    elif player_move == '3, 1':
+        three_one = 'o'
+    elif player_move == '1, 2':
+        one_two = 'o'
+    elif player_move == '2, 2':
+        two_two = 'o'
+    elif player_move == '3, 2':
+        three_two = 'o'
+    elif player_move == '1, 3':
+        one_three = 'o'
+    elif player_move == '2, 3':
+        two_three = 'o'
+    elif player_move == '3, 3':
+        three_three = 'o'
 
 
 def show_board():
