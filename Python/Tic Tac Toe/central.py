@@ -11,6 +11,8 @@ three_three = "none"
 
 def ask_for_move():
     player_move_x = input("Where would you like to go on the x axis? ")
+
+    # Checks if the player gave the correct input
     while player_move_x != '1' or '2' or '3':
         player_move_x = input("Where would you like to go on the x axis? ")
 
@@ -18,6 +20,7 @@ def ask_for_move():
     while player_move_y != '1' or '2' or '3':
         player_move_y = input("Where would you like to go on the y axis? ")
 
+    # TODO Check if the space is already occupied before declaring it a valid move.
     player_move = (player_move_x, player_move_y)
     if player_move == '1, 1':
         one_one = 'o'
@@ -48,10 +51,11 @@ def tie():
     print('You tied up the game. Good job not-loser.')
 
 
+# This function will be called at the end of every move to display the current status of the board.
+# TODO Add a board output for all of the possibilities of what the board could look like.
 def show_board():
     if one_one == 'x' and two_one == 'x' and three_one == 'x':
         print('''
-              \  /      \  /        \  /
-               \         \           \
-             /  \       /  \        /  \
+              x | x | x
+              --+---+--
               ''')
