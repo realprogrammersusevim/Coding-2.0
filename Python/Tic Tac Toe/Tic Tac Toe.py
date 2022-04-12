@@ -73,8 +73,8 @@ ask_for_move()
 if config.player_move == '2, 1':
     config.two_two = 'x'
     print("2, 2")
-    ask_for_move()
     show_board()
+    ask_for_move()
 
     if config.player_move == '3, 1' or '1, 2' or '3, 2' or '1, 3' or '2, 3':
         config.three_three = 'x'
@@ -83,8 +83,8 @@ if config.player_move == '2, 1':
     elif config.player_move == '3, 3':
         config.one_three = 'x'
         print('1, 3')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '3, 1' or '3, 2' or '2, 3':
             config.one_two = 'x'
@@ -97,8 +97,8 @@ if config.player_move == '2, 1':
 elif config.player_move == '3, 1':
     config.one_three = 'x'
     print("1, 3")
-    ask_for_move()
     show_board()
+    ask_for_move()
 
     if config.player_move == '2, 1' or '2, 2' or '3, 2' or '2, 3' or '3, 3':
         config.one_two = 'x'
@@ -108,8 +108,8 @@ elif config.player_move == '3, 1':
     elif config.player_move == '1, 2':
         config.three_three = 'x'
         print('3, 3')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '2, 1' or '2, 2' or '3, 2':
             config.two_three = 'x'
@@ -123,8 +123,8 @@ elif config.player_move == '3, 1':
 elif config.player_move == '1, 2':
     config.two_two = 'x'
     print("2, 2")
-    ask_for_move()
     show_board()
+    ask_for_move()
 
     if config.player_move == '2, 1' or '3, 1' or '3, 2' or '1, 3' or '2, 3':
         config.three_three = 'x'
@@ -134,8 +134,8 @@ elif config.player_move == '1, 2':
     elif config.player_move == '3, 3':
         config.three_one = 'x'
         print('3, 1')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '3, 2' or '1, 3' or '2, 3':
             config.two_one = 'x'
@@ -146,15 +146,17 @@ elif config.player_move == '1, 2':
             config.one_three = 'x'
             print('1, 3')
             computer_wins()
-elif config.player_move == '2 ,2':
+elif config.player_move == '2, 2':
     config.three_three = 'x'
     print("3, 3")
+    show_board()
+    ask_for_move()
 
     if config.player_move == '2, 1':
         config.two_three = 'x'
         print('2, 3')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '3, 1' or '1, 2' or '3, 2':
             config.two_three = 'x'
@@ -163,8 +165,8 @@ elif config.player_move == '2 ,2':
         elif config.player_move == '1, 3':
             config.three_one = 'x'
             print('3, 1')
-            ask_for_move()
             show_board()
+            ask_for_move()
 
             if config.player_move == '1, 2':
                 config.three_two = 'x'
@@ -177,8 +179,8 @@ elif config.player_move == '2 ,2':
     elif config.player_move == '3, 1':
         config.one_three = 'x'
         print('1, 3')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '2, 1' or '2, 3':
             config.one_two = 'x'
@@ -191,8 +193,8 @@ elif config.player_move == '2 ,2':
     elif config.player_move == '1, 2':
         config.three_two = 'x'
         print('3, 2')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '2, 1' or '1, 3' or '2, 3':
             config.three_two = 'x'
@@ -201,8 +203,8 @@ elif config.player_move == '2 ,2':
         elif config.player_move == '3, 1':
             config.one_three
             print('1, 3')
-            ask_for_move()
             show_board()
+            ask_for_move()
 
             if config.player_move == '2, 1':
                 config.two_three = 'x'
@@ -215,8 +217,8 @@ elif config.player_move == '2 ,2':
     elif config.player_move == '3, 2':
         config.one_two = 'x'
         print('1, 2')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '2, 1' or '3, 1' or '2, 3':
             config.one_three = 'x'
@@ -225,8 +227,8 @@ elif config.player_move == '2 ,2':
         elif config.player_move == '1, 3':
             config.three_one = 'x'
             print('3, 1')
-            ask_for_move()
             show_board()
+            ask_for_move()
 
             if config.player_move == '2, 1':
                 config.two_three = 'x'
@@ -239,8 +241,8 @@ elif config.player_move == '2 ,2':
     elif config.player_move == '1, 3':
         config.three_one = 'x'
         print('3, 1')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '2, 1' or '2, 3':
             config.three_two = 'x'
@@ -253,8 +255,8 @@ elif config.player_move == '2 ,2':
     elif config.player_move == '2, 3':
         config.one_one = 'x'
         print('2, 1')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '1, 2' or '3, 2' or '1, 3':
             config.three_one = 'x'
@@ -263,8 +265,8 @@ elif config.player_move == '2 ,2':
         elif config.player_move == '3, 1':
             config.one_three = 'x'
             print('1, 3')
-            ask_for_move()
             show_board()
+            ask_for_move()
 
             if config.player_move == '1, 2':
                 config.three_two = 'x'
@@ -277,8 +279,8 @@ elif config.player_move == '2 ,2':
 elif config.player_move == '3, 2':
     config.two_two = 'x'
     print('2, 2')
-    ask_for_move()
     show_board()
+    ask_for_move()
 
     if config.player_move == '2, 1' or '3, 1' or '1, 2' or '1, 3' or '2, 3':
         config.three_three = 'x'
@@ -287,8 +289,8 @@ elif config.player_move == '3, 2':
     elif config.player_move == '3, 3':
         config.three_one = 'x'
         print('3, 1')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '1, 2' or '1, 3' or '2, 3':
             config.two_one = 'x'
@@ -301,8 +303,8 @@ elif config.player_move == '3, 2':
 elif config.player_move == '1, 3':
     config.three_one = 'x'
     print('3, 1')
-    ask_for_move()
     show_board()
+    ask_for_move()
 
     if config.player_move == '1, 2' or '2, 2' or '3, 2' or '2, 3' or '3, 3':
         config.two_one = 'x'
@@ -311,8 +313,8 @@ elif config.player_move == '1, 3':
     elif config.player_move == '2, 1':
         config.three_three = 'x'
         print('3, 3')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '1, 2' or '2, 2' or '2, 3':
             config.three_two = 'x'
@@ -325,8 +327,8 @@ elif config.player_move == '1, 3':
 elif config.player_move == '2, 3':
     config.two_two = 'x'
     print('2, 2')
-    ask_for_move()
     show_board()
+    ask_for_move()
 
     if config.player_move == '2, 1' or '3, 1' or '1, 2' or '3, 2' or '1, 3':
         config.three_three = 'x'
@@ -335,8 +337,8 @@ elif config.player_move == '2, 3':
     elif config.player_move == '3, 3':
         config.one_three = 'x'
         print('1, 3')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '2, 1' or '3, 1':
             config.one_two = 'x'
@@ -349,8 +351,8 @@ elif config.player_move == '2, 3':
 elif config.player_move == '3, 3':
     config.three_one = 'x'
     print('3, 1')
-    ask_for_move()
     show_board()
+    ask_for_move()
 
     if config.player_move == '1, 2' or '2, 2' or '3, 2' or '1, 3' or '2, 3':
         config.two_one = 'x'
@@ -359,8 +361,8 @@ elif config.player_move == '3, 3':
     elif config.player_move == '2, 1':
         config.one_three = 'x'
         print('1, 3')
-        ask_for_move()
         show_board()
+        ask_for_move()
 
         if config.player_move == '2, 2' or '3, 2' or '2, 3':
             config.one_two = 'x'
