@@ -1,6 +1,3 @@
-from re import I
-
-
 one_one = "x"
 one_two = " "
 one_three = " "
@@ -16,47 +13,72 @@ player_move = ''
 
 
 def show_board():
-    print(one_one + ' | ' + two_one + ' | ' + three_one)
-    print('--+---+--')
-    print(one_two + ' | ' + two_two + ' | ' + two_three)
-    print('--+---+--')
-    print(one_three + ' | ' + two_three + ' | ' + three_three)
+    global one_one
+    global two_one
+    global three_one
+    global one_two
+    global two_two
+    global two_three
+    global one_three
+    global two_three
+    global three_three
+
+    print('  1   2   3')
+    print('1 ' + one_one + ' | ' + two_one + ' | ' + three_one)
+    print('  --+---+--')
+    print('2 ' + one_two + ' | ' + two_two + ' | ' + two_three)
+    print('  --+---+--')
+    print('3 ' + one_three + ' | ' + two_three + ' | ' + three_three)
+
+# The point of this variable is to get where the player would like to go, and then change the correct variable.
 
 
 def ask_for_move():
+    global player_move_x
     player_move_x = input("Where would you like to go on the x axis? ")
 
     # Checks if the player gave the correct input
     # while player_move_x != '1' or '2' or '3':
     # player_move_x = input("Where would you like to go on the x axis? ")
 
+    global player_move_y
     player_move_y = input("Where would you like to go on the y axis? ")
     # while player_move_y != '1' or '2' or '3':
     # player_move_y = input("Where would you like to go on the y axis? ")
 
-    show_board()
-
     # TODO Check if the space is already occupied before declaring it a valid move.
+    global player_move
     player_move = (player_move_x + ', ' + player_move_y)
-    print(player_move)
+
     if player_move == '1, 1':
+        global one_one
         one_one = 'o'
     elif player_move == ' 2, 1':
+        global two_one
         two_one = 'o'
     elif player_move == '3, 1':
+        global three_one
         three_one = 'o'
     elif player_move == '1, 2':
+        global one_two
         one_two = 'o'
     elif player_move == '2, 2':
+        global two_two
         two_two = 'o'
     elif player_move == '3, 2':
+        global three_two
         three_two = 'o'
     elif player_move == '1, 3':
+        global one_three
         one_three = 'o'
     elif player_move == '2, 3':
+        global two_three
         two_three = 'o'
     elif player_move == '3, 3':
+        global three_three
         three_three = 'o'
+
+    show_board()
 
 
 def computer_wins():
