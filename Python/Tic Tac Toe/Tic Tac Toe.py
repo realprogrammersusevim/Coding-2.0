@@ -17,9 +17,9 @@ player_move = ''
 
 def show_board():
     print(one_one + ' | ' + two_one + ' | ' + three_one)
-    print('--+--+--')
+    print('--+---+--')
     print(one_two + ' | ' + two_two + ' | ' + two_three)
-    print('--+--+--')
+    print('--+---+--')
     print(one_three + ' | ' + two_three + ' | ' + three_three)
 
 
@@ -38,6 +38,7 @@ def ask_for_move():
 
     # TODO Check if the space is already occupied before declaring it a valid move.
     player_move = (player_move_x + ', ' + player_move_y)
+    print(player_move)
     if player_move == '1, 1':
         one_one = 'o'
     elif player_move == ' 2, 1':
@@ -205,7 +206,7 @@ elif player_move == '2 ,2':
                 print('2, 1')
                 tie()
     elif player_move == '3, 2':
-         one_two = 'x'
+        one_two = 'x'
         print('1, 2')
         ask_for_move()
 
