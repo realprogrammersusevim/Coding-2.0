@@ -10,4 +10,4 @@ Currently you can only play O and the computer can only play X.
 ready_to_continue = input("Are you ready to continue? (y/n) ")
 
 if ready_to_continue == 'y':
-    exec(open("Tic Tac Toe.py").read())
+    exec(open("tic_tac_toe.py").read())
