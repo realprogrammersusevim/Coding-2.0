@@ -4,13 +4,13 @@
 # is to use a hybrid method to load the page with Selenium and then use
 # Beautiful Soup and Mechanical Soup for the HTML parsing and interaction.
 import os
-
+import pickle
 from time import sleep
+
+import applescript
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
-import applescript
-import pickle
 import yaml
 
 print('How many minutes would you like the script to run for?')

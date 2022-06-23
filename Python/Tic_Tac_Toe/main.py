@@ -1,5 +1,3 @@
-import os
-
 print('''
 Welcome to the Tic Tac Toe game.
 It was coded by Jonathan Milligan.

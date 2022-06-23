@@ -18,7 +18,7 @@ for char in the_word:
 
 def guess_function():
     characters_in_guess = 0
-
+    global guess
     guess = input("What is your guess? ").lower()
 
     for char in guess:
@@ -41,7 +41,7 @@ while number_of_tries > 0:
         if guess == char:
             temporary = list(blank_word)
             temporary[index_position] = guess_function
-            blank_word = "".join(temporary)
+            blank_word = temporary
 
             correct_guess = True
         # Here I'm putting the correctly guessed character into the blank string at the correct index. As the player
@@ -56,7 +56,7 @@ while number_of_tries > 0:
             print(blank_word + " was the secret word!")
             break
         else:
-            print("Here's the guessed word so far: " + blank_word)
+            print(f"Here's the guessed word so far: {blank_word}")
 
 if number_of_tries == 0:
     print("Sorry, you lost.")
