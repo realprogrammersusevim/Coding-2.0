@@ -1,6 +1,5 @@
 #!python3
 import random
-from tqdm import tqdm
 
 attack_unit = {
     "infantry": int(input("Enter the number of attacking infantry: ")),
@@ -97,6 +96,8 @@ def take_losses():
         elif attack_unit["bombers"] != 0:
             attack_unit["bombers"] -= 1
             attack_hits -= 1
+        else:
+            break
 
     while defend_hits != 0:
         if defend_unit["infantry"] != 0:
@@ -114,6 +115,8 @@ def take_losses():
         elif defend_unit["bombers"] != 0:
             defend_unit["bombers"] -= 1
             defend_hits -= 1
+        else:
+            break
 
 
 def run():
@@ -153,7 +156,7 @@ def run():
 
 attack_wins = 0
 defend_wins = 0
-for i in tqdm(range(1000)):
+for i in range(1000):
     run()
     if (
         attack_unit["infantry"] == 0
@@ -171,5 +174,7 @@ for i in tqdm(range(1000)):
         and defend_unit["bombers"] == 0
     ):
         attack_wins += 1
+
+    print(attack_wins, defend_wins, end="\r")
 
 print("\n")
