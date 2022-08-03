@@ -1,4 +1,6 @@
 #!python3
+import random
+from tqdm import tqdm
 
 attack_unit = {
     "infantry": int(input("Enter the number of attacking infantry: ")),
@@ -22,47 +24,55 @@ while promoted_infantry != attack_unit["artillery"] and infantry != 0:
     promoted_infantry += 1
 
 
+def roll_dice(num):
+    rand = random.randint(1, 6)
+    if rand <= num:
+        return 1
+    else:
+        return 0
+
+
 def compute_attack_hits():
     attack_hits = 0
 
     for i in range(attack_unit["infantry"]):
-        attack_hits += 1 / 6
+        attack_hits += roll_dice(1)
 
     for i in range(promoted_infantry):
-        attack_hits += 2 / 6
+        attack_hits += roll_dice(2)
 
     for i in range(attack_unit["artillery"]):
-        attack_hits += 2 / 6
+        attack_hits += roll_dice(2)
 
     for i in range(attack_unit["tanks"]):
-        attack_hits += 3 / 6
+        attack_hits += roll_dice(3)
 
     for i in range(attack_unit["fighters"]):
-        attack_hits += 3 / 6
+        attack_hits += roll_dice(3)
 
     for i in range(attack_unit["bombers"]):
-        attack_hits += 4 / 6
+        attack_hits += roll_dice(4)
 
-    return round(attack_hits)
+    return attack_hits
 
 
 def compute_defend_hits():
     defend_hits = 0
 
     for i in range(defend_unit["infantry"]):
-        defend_hits += 2 / 6
+        defend_hits += roll_dice(2)
 
     for i in range(defend_unit["artillery"]):
-        defend_hits += 2 / 6
+        defend_hits += roll_dice(2)
 
     for i in range(defend_unit["tanks"]):
-        defend_hits += 3 / 6
+        defend_hits += roll_dice(3)
 
     for i in range(defend_unit["fighters"]):
-        defend_hits += 3 / 6
+        defend_hits += roll_dice(4)
 
     for i in range(defend_unit["bombers"]):
-        defend_hits += 4 / 6
+        defend_hits += roll_dice(1)
 
     return round(defend_hits)
 
@@ -122,23 +132,44 @@ def run():
         != 0
     ):
         take_losses()
-        print("\n")
-        print("Attackers hit:", compute_attack_hits())
-        print("Defenders hit:", compute_defend_hits())
-        print("\n")
-        print("Attackers remaining:")
-        print("Infantry:", attack_unit["infantry"])
-        print("Artillery:", attack_unit["artillery"])
-        print("Tanks:", attack_unit["tanks"])
-        print("Fighters:", attack_unit["fighters"])
-        print("Bombers:", attack_unit["bombers"])
-        print("\n")
-        print("Defenders remaining:")
-        print("Infantry:", defend_unit["infantry"])
-        print("Artillery:", defend_unit["artillery"])
-        print("Tanks:", defend_unit["tanks"])
-        print("Fighters:", defend_unit["fighters"])
-        print("Bombers:", defend_unit["bombers"])
+        # print("\n")
+        # print("Attackers hit:", compute_attack_hits())
+        # print("Defenders hit:", compute_defend_hits())
+        # print("\n")
+        # print("Attackers remaining:")
+        # print("Infantry:", attack_unit["infantry"])
+        # print("Artillery:", attack_unit["artillery"])
+        # print("Tanks:", attack_unit["tanks"])
+        # print("Fighters:", attack_unit["fighters"])
+        # print("Bombers:", attack_unit["bombers"])
+        # print("\n")
+        # print("Defenders remaining:")
+        # print("Infantry:", defend_unit["infantry"])
+        # print("Artillery:", defend_unit["artillery"])
+        # print("Tanks:", defend_unit["tanks"])
+        # print("Fighters:", defend_unit["fighters"])
+        # print("Bombers:", defend_unit["bombers"])
 
 
-run()
+attack_wins = 0
+defend_wins = 0
+for i in tqdm(range(1000)):
+    run()
+    if (
+        attack_unit["infantry"] == 0
+        and attack_unit["artillery"] == 0
+        and attack_unit["tanks"] == 0
+        and attack_unit["fighters"] == 0
+        and attack_unit["bombers"] == 0
+    ):
+        defend_wins += 1
+    elif (
+        defend_unit["infantry"] == 0
+        and defend_unit["artillery"] == 0
+        and defend_unit["tanks"] == 0
+        and defend_unit["fighters"] == 0
+        and defend_unit["bombers"] == 0
+    ):
+        attack_wins += 1
+
+print("\n")
