@@ -1,0 +1,8 @@
+#!/bin/sh
+# Make using the Perl Tenqwar Transcriber (ptt) easy to use.
+text=$1
+
+echo $text > input_file.txt
+perl ptt/ptt.pl -q ptt/qu.ptm input_file.txt output_file.txt
+cat output_file.txt
+rm input_file.txt output_file.txt
