@@ -1,0 +1,13 @@
+attack_unit:
+  infantry: 1
+  artillery: 1
+  tanks: 0
+  fighters: 0
+  bombers: 0
+
+defend_unit:
+  infantry: 2
+  artillery: 0
+  tanks: 0
+  fighters: 0
+  bombers: 0
