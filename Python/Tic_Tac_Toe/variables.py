@@ -3,7 +3,6 @@ import numpy as np
 
 
 player_move = ''
-rotate_player_move = np.zeros((3, 3), dtype=int)
 rotated_player_move = ""
 
 player_move_x = ''
