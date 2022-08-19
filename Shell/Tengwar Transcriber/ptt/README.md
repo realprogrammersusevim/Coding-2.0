@@ -1,10 +1,10 @@
-Perl Tengwar Transcriber
-version 1.2, June 2006
-Author: Ignacio Fernández Galván (Jellby): jellby@yahoo.com
-Homepage: djelibeibi.unex.es/tengwar
+Perl Tengwar Transcriber  
+version 1.2, June 2006  
+Author: Ignacio Fernández Galván (Jellby): jellby@yahoo.com  
+Homepage: djelibeibi.unex.es/tengwar  
 
 
-INTRODUCTION
+## INTRODUCTION
 
 Perl Tengwar Transcriber (ptt) is a Perl script designed for converting
 texts written with the roman alphabet into tengwar (and vice-versa).
@@ -15,10 +15,10 @@ is straightforward to convert this to any other format. A mode file for
 conversion into Dan Smith's encoding is also provided.
 
 
-INSTALLATION AND REQUISITES
+## INSTALLATION AND REQUISITES
 
 Being a Perl script, ptt needs a working Perl instalation. This should
-be no problem for Linux users. Windows, MacOs and other OS users may
+be no problem for Linux users. Windows, MacOS and other OS users may
 have to download and install Perl, I don't know.
 
 In order to transcribe texts, an appropriate mode file for the language
@@ -27,18 +27,18 @@ package, other modes may be available soon, or maybe not... If you write
 a mode file yourself, please let me know so I can add it to the package.
 
 
-USAGE
+## USAGE
 
 In a linux system, just make sure that the ptt.pl file has execution
 permisions and that the path in its first line is correct for your
 system. Then run:
 
-  ./ptt.pl
+``./ptt.pl``
 
 You'll get a short usage notice. To transcribe a text in roman to
 tengwar use the following command.
 
-  ./ptt.pl [options] mode-file [text-file] [output-file]
+``./ptt.pl [options] mode-file [text-file] [output-file]``
 
 where mode-file is the mode file to use, text-file is the file with the
 text you want to transcribe and output-file is the file where you want
@@ -51,54 +51,54 @@ The options must be preceded by a hyphen (-) and all in the same "word",
 i.e., write "-drq" and not "-d -r -q" A description for the different
 options follows:
 
--d
+``-d``
   When transcribing numbers (if the mode file has number patterns),
 output tengwar numbers as decimal (base 10). Default is duodecimal (base
 12) numbers.
 
--h
--?
+``-h``
+``-?``
   Writes the usage notice and exits.
   
--m
+``-m``
   Don't make any transcription, just read and check the mode file.
 
--n
+``-n``
   When transcribing numbers (if the mode file has number patterns),
 output tengwar numbers in left-to-right order (rightmost digit is the
 least significant). Default is right-to-left order.
 
--o
+``-o``
   Use standard input as input-file, but still send the output to a real
 file and not to the standard output. If you use this option, you specify
 an output-file but no input-file. This is useful for pipes (see below:
 Conversion to Dan Smith's Encoding).
 
--p
+``-p``
   Modify the way the transcription is performed by enabling or disabling
 transcription mode options (defined in the mode-file) The options are
 given in a separate "word" before the mode-file (see below:
 Transcription Mode Options).
 
--q
+``-q``
   Quiet mode. Don't print any message to the output, just do the
 transcription.
 
--r
+``-r``
   Do a tengwar to roman transcription instead of roman to tengwar. When
 doing the reverse transcription, the number format will be recognized,
 unless it is decimal left-to-right (because decimal numbers don't have a
 least significant mark in tengwar), in which case you should specify the
 -n option too (see above)
 
--v
--vv
+``-v``
+``-vv``
   Give more info about the mode file being used. -v shows the number of
 patterns in the mode file, whether it is case sensitive and whether it
 includes number patterns. -vv shows also all the patterns in the mode
 file.
 
-* Conversion to Dan Smith's Encoding
+### Conversion to Dan Smith's Encoding
 
 Although the primary goal of ptt is to generate input for the
 TengwarScript LaTeX package, it can also be used for generating text
@@ -111,24 +111,24 @@ called ts2ds.ptm, and I hope it's easy enough to use.
 You can first transcribe into the TengwarScript package format, and then
 convert it:
 
-  ./ptt.pl mymode.ptm story.txt story.tex
-  ./ptt.pl ts2ds.ptm story.tex story.tng
+  ``./ptt.pl mymode.ptm story.txt story.tex``
+  ``./ptt.pl ts2ds.ptm story.tex story.tng``
 
 or you can use a pipe:
 
-  ./ptt.pl -q mymode.ptm story.txt | ./ptt.pl -o ts2ds.ptm story.tng
+``./ptt.pl -q mymode.ptm story.txt | ./ptt.pl -o ts2ds.ptm story.tng``
 
-here, the first ./ptt.pl uses the -q option so that no messages are
-transferred the the second command, while the second ./ptt.pl uses the
--o option to get the input from the first one and still being able to
+here, the first ``./ptt.pl`` uses the ``-q`` option so that no messages are
+transferred the the second command, while the second ``./ptt.pl`` uses the
+``-o`` option to get the input from the first one and still being able to
 provide an output file.
 
 Similarly, to convert a text written for Dan Smith's encoding into the
 tengwar package for LaTeX format, use:
 
-  ./ptt.pl -r ts2ds.ptm story.tng story.tex
+  ``./ptt.pl -r ts2ds.ptm story.tng story.tex``
 
-* Transcription Mode Options
+### Transcription Mode Options
 
   A mode file can contain itself different options which affect the
 output of the transcription. For instance, an option can control whether
@@ -140,6 +140,7 @@ specific options a mode file is designed to support, you can run
 "./ptt.pl -mv mode-file", if the mode file has built-in options
 something like this will appear on the screen:
 
+```text
 ==========================
 Mode options:
 (def)   (sel)   add     description
@@ -155,6 +156,7 @@ Mode options:
 ----------------
 Default:        119
 ==========================
+```
 
   This particular mode file supports 9 options. The first column
 displays the number of each option and its default state: "+2" means
@@ -197,7 +199,7 @@ some cases you should also specify the correct transcription mode
 options when transcribing back to roman.
 
 
-TEST
+## TEST
 
 A simple test is included in the directory "test". You'll find there two
 files: "frases.txt", which contains two pangrams and numbers in Spanish,
@@ -220,7 +222,7 @@ and recompiling frases.tex. You'll get decimal numbers, roman
 punctuation, and vowels as individual tengwar.
 
 
-MODE FILES
+## MODE FILES
 
 ptt does not use the mode files used by other programs like Tengwar
 Scribe or YaTT; this may be a limitation, but it is so because its own
@@ -228,7 +230,7 @@ format is, I hope, more powerful and easier to edit. The modes for ptt
 have the extension .ptm (Perl Tengwar Mode). What follows is a
 description of this format.
 
-* Header
+### Header
 
 The mode file starts with a header of four lines with this format:
 
@@ -259,7 +261,7 @@ line with the format:
 where num is the number of each option and text1 is a description for
 it. If the optional * is present, the option will be enabled by default.
 
-* Text patterns
+### Text patterns
 
 The patterns description starts with the following line:
 
@@ -309,7 +311,7 @@ only be active when option #2 is enabled and option #5 is disabled, the
 state of other options does not matter. If a pattern is not active, it's
 simply ignored.
 
-* Number patters
+### Number patters
 
 If the mode includes number patterns, the next line after the last
 "#===" will be:
@@ -327,7 +329,7 @@ significant digits in duodecimal numbers. text1 can be empty for 10 and
 11.
 
 
-BUGS, LIMITATIONS, PROBLEMS...
+## BUGS, LIMITATIONS, PROBLEMS...
 
 As in any program, some bugs may be present, though I'm not aware of
 any... yet.
@@ -345,7 +347,7 @@ If you find some other problem, please let me know, and better yet if
 you fix it!
 
 
-CHANGELOG
+## CHANGELOG
 
 17/06/2006: Version 1.2.
 17/04/2006: Optimized a bit the pattern search by sorting and indexing.
