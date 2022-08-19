@@ -29,7 +29,6 @@ for html_file in all_html_files:
         for link in soup.find_all("a"):
             all_links.append(link.get("href"))
 
-
 # Remove all duplicate links and those pointing to other pages in lopp.net
 print(f"Total number of links: {len(all_links)}")
 all_links = list(set(all_links))  # Removes duplicate links
@@ -38,11 +37,14 @@ shuffle(
 )  # We don't want to visit the same page twice in a row, so shuffle the list
 
 for link in all_links:
-    if not validators.url(link):
-        # If the first 4 chars of the link are not "http" than it is a relative link and unwanted
+    if validators.url(link) == False:
+        # If the link is not a valid URL, remove it
         all_links.remove(link)
     elif link.find("lopp.net") != -1:
         # Ignores the link if it points to one of the other pages in lopp.net or blog.lopp.net
+        all_links.remove(link)
+    elif link[0] == "#" or link[0] == "/":
+        # Ignores the link if it is a link to a specific section of the page
         all_links.remove(link)
     elif link.find("reddit.com") != -1:
         # Temp fix bc Covenant Eyes blocks reddit.com
@@ -83,11 +85,12 @@ for link in tqdm(failed_links):
 print("Finished checking links with a timeout of 10 seconds")
 print(f"Number of failed links: {len(failed_links)}")
 
+print(failed_links)
 really_failed_links = []
 
 for link in failed_links:
     webbrowser.open_new_tab(link)
-    if pyip.inputYesNo("Is this link working?") == "yes":
+    if pyip.inputYesNo("Is this link working? ") == "no":
         really_failed_links.append(link)
 
 # Search all the HTML files for the failed links and print them out
