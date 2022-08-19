@@ -7,12 +7,13 @@ import webbrowser
 import pyinputplus as pyip
 from fake_headers import Headers
 from random import shuffle
+import validators
 
 # Create a list of all the HTML files in lopp.net
 # website_directory = pyip.inputFilepath(
 # prompt="Enter the path to the website directory: "
 # )
-website_directory = "/Users/jonathanmilligan/Documents/lopp.net"
+website_directory = "/Users/jonathanmilligan/Documents/lopp.net/"
 all_html_files = []
 os.chdir(website_directory)
 for root, dirs, files in os.walk(os.getcwd()):
@@ -37,7 +38,7 @@ shuffle(
 )  # We don't want to visit the same page twice in a row, so shuffle the list
 
 for link in all_links:
-    if link[0:4] != "http":
+    if not validators.url(link):
         # If the first 4 chars of the link are not "http" than it is a relative link and unwanted
         all_links.remove(link)
     elif link.find("lopp.net") != -1:
@@ -86,7 +87,8 @@ really_failed_links = []
 
 for link in failed_links:
     webbrowser.open_new_tab(link)
-    pyip.inputYesNo("Is this link working?")
+    if pyip.inputYesNo("Is this link working?") == "yes":
+        really_failed_links.append(link)
 
 # Search all the HTML files for the failed links and print them out
 files_with_failed_links = []
