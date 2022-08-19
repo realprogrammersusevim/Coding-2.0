@@ -1,6 +1,6 @@
 Perl Tengwar Transcriber
 version 1.2, June 2006
-Author: Ignacio Fern·ndez Galv·n (Jellby): jellby@yahoo.com
+Author: Ignacio Fern√°ndez Galv√°n (Jellby): jellby@yahoo.com
 Homepage: djelibeibi.unex.es/tengwar
 
 
