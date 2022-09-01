@@ -3,8 +3,8 @@ import spacy
 
 # Use SpaCy to classify every word in the text
 # sentence = "After the picnic, the dog ran home at night."
-# sentence = "I gave my friend a present after school."
-sentence = "He is stupid."
+sentence = "I gave my friend a present after school."
+sentence = "That hairy kid definitely is stupid."
 # sentence = "Go away."
 nlp = spacy.load("en_core_web_sm")
 doc = nlp(sentence)
@@ -59,22 +59,77 @@ for token in doc:
         verb = token.text
 
 object_of_sentence = ""
+possible_object_dep_ = ["dobj", "acomp"]
 for token in doc:
-    if token.dep_ == "dobj" or token.dep_ == "acomp":
-        object_of_sentence = token.text
-        break
+    match token.dep_:
+        case "dobj":
+            object_of_sentence = " | " + token.text
+        case "acomp":
+            object_of_sentence = " \\ " + token.text
+
+subj_desc = [token.text for token in doc if token.head.text == subject]
 
 # TODO: Translate the classified and parsed text into a diagram
 first_line = f"{subject} | {verb}"
 if object_of_sentence != "":
-    first_line += f" | {object_of_sentence}"
+    first_line += object_of_sentence
 
-underline = []
+# Diagram all words describing the subject
+descriptors = []
+for i in range(len(max(subj_desc, key=len))):
+    descriptors.append(" " * i)
+
+    for entry in subj_desc:
+        try:
+            descriptors.append(f"\\{entry[i]}")
+        except IndexError:
+            descriptors.append("  ")
+
+        descriptors.append(" ")
+
+    descriptors.append("\n")
+
+# TODO: The program currently creates the multiline diagram of noun descriptors and then tries to add the verb descriptors onto that. Need to do both at the same time.
+
+# Diagram all words describing the verb
+verb_desc = [
+    token.text for token in doc if token.head.text == verb and token.dep_ == "advmod"
+]
+
+# Get the index of where the verb starts in the diagram
+verb_start_index = first_line.index(verb[0])
+num_align_spaces = 0
+candidate = ""
+while candidate != "\n":
+    for i in descriptors:
+        candidate = i
+        num_align_spaces += len(i)
+
+for i in descriptors:
+    if i == "\n":
+        descriptors.remove(i)
+
+for i in range(len(max(verb_desc, key=len))):
+    if verb_start_index > num_align_spaces:
+        descriptors.append(" " * (verb_start_index - num_align_spaces))
+
+    for entry in verb_desc:
+        try:
+            descriptors.append(f"\\{entry[i]}")
+        except IndexError:
+            descriptors.append("  ")
+
+        descriptors.append(" ")
+
+    descriptors.append("\n")
+
+baseline = []
 for char in first_line:
-    if char == "|":
-        underline.append("+")
+    if char == "|" or char == "\\":
+        baseline.append("+")
     else:
-        underline.append("-")
+        baseline.append("-")
 
 print(first_line)
-print("".join(underline))
+print("".join(baseline))
+print("".join(descriptors))
