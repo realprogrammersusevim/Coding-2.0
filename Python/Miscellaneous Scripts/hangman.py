@@ -1,75 +1,42 @@
-# Hangman game.
-# TODO: Problem 1. The guessed character is never triggered as being equal to the current character it's being checked
-#  against. Perhaps "char" is the wrong term for what I mean?
+from getpass import getpass
 
-import os
-
-the_word = input("What should the secret word be? ").lower()
+the_word = getpass("Enter the word: ").lower()
+the_word = list(the_word)
 number_of_tries = int(input("How many tries should the guessers get? "))
 
 while number_of_tries < 1:
     print("The number of tries needs to be 1 or more.")
     number_of_tries = int(input("How many tries should the guessers get? "))
 
-blank_word = ""
-for char in the_word:
-    blank_word += " "
-
-
-def guess_function():
-    characters_in_guess = 0
-    global guess
-    guess = input("What is your guess? ").lower()
-
-    for char in guess:
-        characters_in_guess += 1
-    if characters_in_guess > 1:
-        print("Just one letter!")
-        guess_function()
-
-
-print("You're all set up! Let the game begin.")
+guessed_letters = []
+correct_letters = []
 
 while number_of_tries > 0:
-    correct_guess = False
-    guess_function()
-    index_position = 0
+    if len(correct_letters) == len(the_word):
+        print("You won!")
+        print(f"The word was {''.join(the_word)}")
+        break
 
-    for char in the_word:
-        index_position += 1
-
-        if guess == char:
-            temporary = list(blank_word)
-            temporary[index_position] = guess_function
-            blank_word = temporary
-
-            correct_guess = True
-        # Here I'm putting the correctly guessed character into the blank string at the correct index. As the player
-        # guesses the correct words the blank spaces will be filled with the correct letters to form the word.
-
-    if not correct_guess:
-        number_of_tries -= 1
-        print("Here's the guessed word so far: " + blank_word)
-    elif correct_guess:
-        if blank_word == the_word:
-            print("Hey! You won!")
-            print(blank_word + " was the secret word!")
-            break
+    print(f"You have {number_of_tries} tries left.")
+    for letter in the_word:
+        if letter in guessed_letters:
+            print(letter, end="")
         else:
-            print(f"Here's the guessed word so far: {blank_word}")
+            print("_", end="")
+    print()
+
+    guess = input("What is your guess? ").lower()
+    if guess in guessed_letters:
+        print("You have already guessed that letter.")
+    elif guess in the_word:
+        print("You guessed correctly!")
+        guessed_letters.append(guess)
+        correct_letters.append(guess)
+    else:
+        print("You guessed incorrectly.")
+        guessed_letters.append(guess)
+        number_of_tries -= 1
 
 if number_of_tries == 0:
-    print("Sorry, you lost.")
-
-answered_the_question = False
-play_again = input("Would you like to play again? (y/n) ")
-
-while not answered_the_question:
-    if play_again == "y":
-        os.system("python3 /Users/admin/Desktop/Hangman.py")
-        answered_the_question = True
-    elif play_again == "n":
-        print("See you next time then.")
-        answered_the_question = True
-    else:
-        print("Hmm, you didn't answer the question as requested.")
+    print("You have run out of tries.")
+    print(f"The word was {''.join(the_word)}.")
