@@ -1,4 +1,3 @@
-#!python3
 import random
 import yaml
 
@@ -21,8 +20,6 @@ def get_units():
         promoted_infantry += 1
 
 
-
-
 def roll_dice(num):
     rand = random.randint(1, 6)
     if rand <= num:
@@ -30,6 +27,17 @@ def roll_dice(num):
     else:
         return 0
 
+
+avg_defend_infantry = 0
+avg_defend_artillery = 0
+avg_defend_tank = 0
+avg_defend_fighter = 0
+avg_defend_bomber = 0
+avg_attack_infantry = 0
+avg_attack_artillery = 0
+avg_attack_tank = 0
+avg_attack_fighter = 0
+avg_attack_bomber = 0
 
 attack_wins = 0
 defend_wins = 0
@@ -136,6 +144,21 @@ for i in range(1000):
         and attack_unit["bombers"] == 0
     ):
         defend_wins += 1
+        avg_defend_infantry = (
+            avg_defend_infantry * (defend_wins - 1) + defend_unit["infantry"]
+        ) / defend_wins
+        avg_defend_artillery = (
+            avg_defend_artillery * (defend_wins - 1) + defend_unit["artillery"]
+        ) / defend_wins
+        avg_defend_tank = (
+            avg_defend_tank * (defend_wins - 1) + defend_unit["tanks"]
+        ) / defend_wins
+        avg_defend_fighter = (
+            avg_defend_fighter * (defend_wins - 1) + defend_unit["fighters"]
+        ) / defend_wins
+        avg_defend_bomber = (
+            avg_defend_bomber * (defend_wins - 1) + defend_unit["bombers"]
+        ) / defend_wins
     elif (
         defend_unit["infantry"] == 0
         and defend_unit["artillery"] == 0
@@ -144,8 +167,43 @@ for i in range(1000):
         and defend_unit["bombers"] == 0
     ):
         attack_wins += 1
+        avg_attack_infantry = (
+            avg_attack_infantry * (attack_wins - 1) + attack_unit["infantry"]
+        ) / attack_wins
+        avg_attack_artillery = (
+            avg_attack_artillery * (attack_wins - 1) + attack_unit["artillery"]
+        ) / attack_wins
+        avg_attack_tank = (
+            avg_attack_tank * (attack_wins - 1) + attack_unit["tanks"]
+        ) / attack_wins
+        avg_attack_fighter = (
+            avg_attack_fighter * (attack_wins - 1) + attack_unit["fighters"]
+        ) / attack_wins
+        avg_attack_bomber = (
+            avg_attack_bomber * (attack_wins - 1) + attack_unit["bombers"]
+        ) / attack_wins
 
-print(f"""
-        Attacker winrate: {attack_wins/10}%
-        Defender winrate: {defend_wins/10}%
-        """)
+get_units()
+print(f"Attacker winrate: {attack_wins/10}%")
+if attack_unit["infantry"] != 0:
+    print(f"Average infantry left: {round(avg_attack_infantry)}")
+if attack_unit["artillery"] != 0:
+    print(f"Average artillery left: {round(avg_attack_artillery)}")
+if attack_unit["tanks"] != 0:
+    print(f"Average tanks left: {round(avg_attack_tank)}")
+if attack_unit["fighters"] != 0:
+    print(f"Average fighters left: {round(avg_attack_fighter)}")
+if attack_unit["bombers"] != 0:
+    print(f"Average bombers left: {round(avg_attack_bomber)}")
+
+print(f"Defender winrate: {defend_wins/10}%")
+if defend_unit["infantry"] != 0:
+    print(f"Average infantry left: {round(avg_defend_infantry)}")
+if defend_unit["artillery"] != 0:
+    print(f"Average artillery left: {round(avg_defend_artillery)}")
+if defend_unit["tanks"] != 0:
+    print(f"Average tanks left: {round(avg_defend_tank)}")
+if defend_unit["fighters"] != 0:
+    print(f"Average fighters left: {round(avg_defend_fighter)}")
+if defend_unit["bombers"] != 0:
+    print(f"Average bombers left: {round(avg_defend_bomber)}")
