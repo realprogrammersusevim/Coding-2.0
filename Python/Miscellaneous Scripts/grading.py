@@ -15,8 +15,7 @@ logging.debug("Imports finished, about to define the command options with click.
 @click.option(
     "-c",
     "--curve",
-    is_flag=True,
-    help="Show whether your grade is above or below average.",
+    help="Show whether your grade is above or below average. Pass a the highest score in the class as an argument to show how much your grade was adjusted.",
 )
 def main(grade: float, curve):
     """This script will tell you your letter grade based on your percentage grade."""
@@ -52,15 +51,35 @@ def main(grade: float, curve):
 
     if curve:
         logging.debug("Curve option is set, about to calculate the curve grade.")
+        logging.debug(f"The curve option value is: {curve}")
         # Show where in the class your grade is
-        # Assume the class average is 80.0
-        if grade >= 80.0:
+        # Assume the class average is 85.0
+        if grade >= 85.0:
             print("You are above average.")
-        elif grade < 80.0:
+        elif grade < 85.0:
             print("You are below average.")
+
+        # Show how much your grade was adjusted
+        curve = float(curve)
+        if grade > curve:
+            print("Your grade was adjusted by 0.0%.")
+        elif grade <= curve:
+            adjustment_amount = 100 - curve
+            original_grade = grade - adjustment_amount
+            logging.debug(f"The amount your grade was adjusted is: {adjustment_amount}")
+
+            if grade == 100.0:
+                print(
+                    "You had the highest grade in the class. As such, you were the one who set the curve and we are unable to calculate how much your grade was adjusted."
+                )
+            else:
+                print(
+                    f"Your grade was adjusted upwards by {round((adjustment_amount / original_grade) * 100, ndigits=2)}%."
+                )
 
     logging.debug("Main function finished, about to exit.")
 
 
 if __name__ == "__main__":
+    logging.debug("This is the main module and is not being imported.")
     main()
