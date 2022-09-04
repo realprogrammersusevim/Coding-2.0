@@ -6,14 +6,23 @@ logging.debug("Imports finished, about to define the command options with click.
 
 
 @click.command()
-@click.argument("grade", type=float)
+@click.argument(
+    "grade",
+    type=float,
+    required=True,
+    nargs=1,
+)
 @click.option(
-    "-c", "--curve", is_flag=True, help="Show where your grade would be on a curve."
+    "-c",
+    "--curve",
+    is_flag=True,
+    help="Show whether your grade is above or below average.",
 )
 def main(grade: float, curve):
+    """This script will tell you your letter grade based on your percentage grade."""
     logging.debug("Command options defined, about to run the main function.")
+    logging.debug(f"The grade is: {grade}")
 
-    # Convert the match case statemet to an if-elif statement
     if 97.0 <= grade <= 100.0:
         print("A+")
     elif 93.0 <= grade < 97.0:
@@ -42,9 +51,14 @@ def main(grade: float, curve):
         print("F")
 
     if curve:
-        pass
+        logging.debug("Curve option is set, about to calculate the curve grade.")
+        # Show where in the class your grade is
+        # Assume the class average is 80.0
+        if grade >= 80.0:
+            print("You are above average.")
+        elif grade < 80.0:
+            print("You are below average.")
 
-    logging.debug(f"The grade is: {grade}")
     logging.debug("Main function finished, about to exit.")
 
 
