@@ -95,7 +95,7 @@ least significant mark in tengwar), in which case you should specify the
 ``-vv``
   Give more info about the mode file being used. -v shows the number of
 patterns in the mode file, whether it is case sensitive and whether it
-includes number patterns. -vv shows also all the patterns in the mode
+includes number patterns. `-vv` shows also all the patterns in the mode
 file.
 
 ### Conversion to Dan Smith's Encoding
@@ -207,12 +207,9 @@ and "frases.tex", which is an input file for LaTeX (it requires the
 TengwarScript package). To run the test:
 
 1. Transcribe to tengwar the txt file. Assuming you run it from the test
-   directory:
-     ../ptt.pl ../es.ptm frases.txt frases.tng
-   Now you'll see the LaTeX (TengwarScript) commands in frases.tng.
+   directory: `../ptt.pl ../es.ptm frases.txt frases.tng`  Now you'll see the LaTeX (TengwarScript) commands in frases.tng.
 
-2. Compile the frases.tex file, preferably with pdflatex:
-     pdflatex frases.tex
+2. Compile the frases.tex file, preferably with pdflatex: `pdflatex frases.tex`
 
 If everything went fine, you'll now have a pdf file with the original
 text and the tengwar transcription. You can try passing some options to
@@ -350,15 +347,17 @@ you fix it!
 ## CHANGELOG
 
 17/06/2006: Version 1.2.
+
 17/04/2006: Optimized a bit the pattern search by sorting and indexing.
-16/04/2006: Added the possibility of transcription mode options, and
-            modified the Spanish and Quenya modes to use them.
+
+16/04/2006: Added the possibility of transcription mode options, and modified the Spanish and Quenya modes to use them.
 
 10/12/2005: Added Quenya mode.
+
 19/11/2005: First release 1.0.
 
 
-LICENSE
+## LICENSE
 
 This program is distributed under the GNU Public License (GPL), see the
 included file COPYING.
