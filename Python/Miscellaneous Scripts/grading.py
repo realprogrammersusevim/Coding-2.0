@@ -1,34 +1,48 @@
 import click
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logging.debug("Imports finished, about to define the command options with click.")
 
 
 @click.command()
-@click.option(
-    "-g", "--grade", is_flag=False, help="The percentage grade to be converted."
-)
+@click.argument("grade", type=float)
 @click.option(
     "-c", "--curve", is_flag=True, help="Show where your grade would be on a curve."
 )
 def main(grade: float, curve):
     logging.debug("Command options defined, about to run the main function.")
 
-    grade = float(grade)
-    if grade >= 90:
+    # Convert the match case statemet to an if-elif statement
+    if 97.0 <= grade <= 100.0:
+        print("A+")
+    elif 93.0 <= grade < 97.0:
         print("A")
-    elif grade >= 80:
+    elif 90.0 <= grade < 93.0:
+        print("A-")
+    elif 87.0 <= grade < 90.0:
+        print("B+")
+    elif 83.0 <= grade < 87.0:
         print("B")
-    elif grade >= 70:
+    elif 80.0 <= grade < 83.0:
+        print("B-")
+    elif 77.0 <= grade < 80.0:
+        print("C+")
+    elif 73.0 <= grade < 77.0:
         print("C")
-    elif grade >= 60:
+    elif 70.0 <= grade < 73.0:
+        print("C-")
+    elif 67.0 <= grade < 70.0:
+        print("D+")
+    elif 63.0 <= grade < 67.0:
         print("D")
-    else:
+    elif 60.0 <= grade < 63.0:
+        print("D-")
+    elif 0.0 <= grade < 60.0:
         print("F")
 
     if curve:
-        print("Your grade would be a B on a curve.")
+        pass
 
     logging.debug(f"The grade is: {grade}")
     logging.debug("Main function finished, about to exit.")
