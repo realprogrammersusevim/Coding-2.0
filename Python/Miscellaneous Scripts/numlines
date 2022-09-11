@@ -19,8 +19,8 @@ def numlines(directory):
                 if lines > max_lines:
                     max_lines = lines
                     max_file = file_path
-            except UnicodeDecodeError:
-                # print("UnicodeDecodeError")
+            except:
+                # print(f"Error reading file: {file_path}")
                 pass
     print(f"{max_file} has the high score with {max_lines} lines.")
 
