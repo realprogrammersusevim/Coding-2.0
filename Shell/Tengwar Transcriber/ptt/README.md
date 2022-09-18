@@ -140,23 +140,20 @@ specific options a mode file is designed to support, you can run
 "./ptt.pl -mv mode-file", if the mode file has built-in options
 something like this will appear on the screen:
 
-```text
-==========================
 Mode options:
-(def)   (sel)   add     description
-+1        *     (1)     Vowels as tehtar
-+2        *     (2)     Dipthongs and tripthongs
-+3        *     (4)     Double tehtar for accents
--4              (8)     Vertical bars for accents
-+5        *     (16)    Tilde for preceding nasal
-+6        *     (32)    Hook for final s
-+7        *     (64)    Use silme nuquerna
--8              (128)   Basic pronunciation mode
--9              (256)   Roman punctuation
-----------------
-Default:        119
-==========================
-```
+| (def) | (sel) | add | description |
+| ----- | ----- | --- | ----------- |
+| +1 | * | (1) | Vowels as tehtar |
+| +2 | * | (2) | Dipthongs and tripthongs |
+| +3 | * | (4) | Double tehtar for accents |
+| -4 |   | (8) | Vertical bars for accents |
+| +5 | * | (16) | Tilde for preceding nasal |
+| +6 | * | (32) | Hook for final s |
+| +7 | * | (64) | Use silme nuquerna |
+| -8 |   | (128) | Basic pronunciation mode |
+| -9 |   | (256) | Roman pronunuciation |
+
+Default: 119
 
   This particular mode file supports 9 options. The first column
 displays the number of each option and its default state: "+2" means
