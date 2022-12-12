@@ -1,13 +1,14 @@
+#!/bin/bash
 clear
+sleep 2
 string="Wake up Neo..."
 
 read_string() {
     while IFS= read -n 1 char ; do
         sleep .2
-        printf "$char"
+        printf "%s" "$char"
     done <<< "$string"
     sleep 2
-    echo \n
     clear
 }
 
@@ -18,6 +19,5 @@ string="Follow the white rabbit."
 read_string
 printf "Knock, knock, Neo."
 sleep 2
-echo \n
 clear
-play Knock,\ knock.mp3 &> /dev/null
+play knock_knock.mp3 &> /dev/null
