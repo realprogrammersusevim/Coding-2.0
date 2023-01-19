@@ -1,23 +1,26 @@
 #!/bin/bash
-clear
-sleep 2
-string="Wake up Neo..."
+
+GREEN='\033[0;32m'
+NC='\033[0m'
 
 read_string() {
     while IFS= read -n 1 char ; do
         sleep .2
-        printf "%s" "$char"
+        printf "$GREEN%s$NC" "$char"
     done <<< "$string"
     sleep 2
     clear
 }
 
+clear
+sleep 2
+string="Wake up Neo..."
 read_string
 string="The Matrix has you..."
 read_string
 string="Follow the white rabbit."
 read_string
-printf "Knock, knock, Neo."
+printf "$GREEN%s$NC" "Knock, knock, Neo."
 sleep 2
 clear
 
